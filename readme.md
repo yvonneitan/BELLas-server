@@ -1,27 +1,12 @@
+Run `npm i` to install all Node packages.
 
-Please run `npm i` for all the packages.
+After making a new database and adding its name to your own `.env` file, run the following commands:
 
-run `npm run start` to start the server 
-
-Database: 
-
-Please create a new Database on your local name `suggestion`
-
-in your sql server run 
 ```
-ALTER TABLE suggestions
-    -> ADD COLUMN email VARCHAR(255) NOT NULL,
-    -> ADD COLUMN name VARCHAR(255) NOT NULL,
-    -> ADD COLUMN problem TEXT NOT NULL;
+npm run migrate
+npm run seed
 ```
-it should help you to create a new suggestions table inside suggestion Database. 
 
-last step: 
-`npx knex seed:run` run this in your termnal, if you got `Ran 1 seed files` then you should be good 
+You should now see two new tables, `suggestions` and `votes`, with seeded data in the `suggestions` table.
 
-Testing the connection: 
-after start your server go to  http://localhost:8080/ you should see `Bell Hackathon Server`
-
-after set up your database, run a get call in postman or browser: http://localhost:8080/suggestions, you should see 5 suggestions I pre-set up in the seeds, they now should be in your database. 
-
-
+Run `npm run start` to start the server.
