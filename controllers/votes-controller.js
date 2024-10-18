@@ -14,8 +14,8 @@ const getVotes = async (req, res) => {
 const postVote = async (req, res) => {
   const {suggestion_id, email, optin} = req.body;
   // validate submission here
-  if(!suggestion_id || !email || optin){
-    return res.status(400).json({message: "suggestion_id, email or optin shouldnt be empty"})
+  if (!suggestion_id || !email || !optin) {
+    return res.status(400).json({ message: "suggestion_id, Email, or optin shouldn't be empty" });
   }
   try {
     const result = await knex("votes").insert({
@@ -23,6 +23,11 @@ const postVote = async (req, res) => {
       email,
       optin
     });
+
+    await knex("suggestions")
+      .where("id", suggestion_id)
+      .increment("votes", 1); // Increment the votes count by 1
+
     res.status(201).json(result);
   } catch (error) {
     res.status(500).json({
