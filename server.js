@@ -7,7 +7,7 @@ import votesRoutes from "./routes/votes-routes.js";
 const app = express();
 
 const PORT = process.env.PORT || 8080;
-const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:";
+const BACKEND_URL = process.env.BACKEND_URL || `http://localhost:${PORT}`;
 
 app.use(cors());
 app.use(express.static("public"));
